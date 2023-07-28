@@ -5,5 +5,5 @@ interface ContainerProps {
   }
 
 export const Container: FC<ContainerProps> = ({ children }) => {
-  return <div className="container relative flex justify-center">{children}</div>;
+  return <div className="flex flex-col gap-7">{children}</div>;
 };
