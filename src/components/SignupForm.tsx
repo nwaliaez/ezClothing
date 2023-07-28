@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
+import { useToast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -14,6 +15,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useForm } from 'react-hook-form';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
 
 const formSchema = z.object({
     name: z.string().min(2, {
@@ -28,15 +31,28 @@ const formSchema = z.object({
 });
 
 export function SignupForm() {
+    // Loading State
+    const [loading, setLoading] = useState<boolean>(false);
+
+    // Toast hook
+    const { toast } = useToast();
+
+    // Submit Button
     async function onSubmit(values: z.infer<typeof formSchema>) {
+        setLoading(true);
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/signup`,
             { method: 'POST', body: JSON.stringify(values) }
         );
         // const result = response.json();
         // console.log(result);
-        console.log(values);
+        toast({
+            description: 'Signup Successful',
+        });
+        setLoading(false);
     }
+
+    // Useform Hook
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -45,6 +61,8 @@ export function SignupForm() {
             password: '',
         },
     });
+
+    // Component
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -92,7 +110,14 @@ export function SignupForm() {
                     )}
                 />
                 <div className="flex justify-end">
-                    <Button type="submit">Sign Up</Button>
+                    {loading ? (
+                        <Button disabled>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Please wait
+                        </Button>
+                    ) : (
+                        <Button type="submit">Sign Up</Button>
+                    )}
                 </div>
             </form>
         </Form>

@@ -1,12 +1,16 @@
 import { FC, ReactNode } from "react";
 import { Button } from "../ui/button";
+import Link from 'next/link';
 
 interface ListItemProps {
-  children: ReactNode;
+    href: string;
+    children: ReactNode;
 }
 
-const ListItem: FC<ListItemProps> = ({ children }) => {
-  return <Button variant="ghost">{children}</Button>;
+const ListItem: FC<ListItemProps> = ({ href, children }) => {
+    return (
+       <Button variant="ghost"><Link href={href}>{children}</Link></Button>
+    );
 };
 
 export default ListItem;

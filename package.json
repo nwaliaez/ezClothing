@@ -17,10 +17,12 @@
         "@radix-ui/react-separator": "^1.0.3",
         "@radix-ui/react-slot": "^1.0.2",
         "@radix-ui/react-tabs": "^1.0.4",
+        "@radix-ui/react-toast": "^1.1.4",
         "@types/node": "20.4.4",
         "@types/react": "18.2.15",
         "@types/react-dom": "18.2.7",
         "autoprefixer": "10.4.14",
+        "bcrypt": "^5.1.0",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.0.0",
         "dotenv": "^16.3.1",
@@ -43,6 +45,7 @@
         "zod": "^3.21.4"
     },
     "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
         "@types/pg": "^8.10.2",
         "drizzle-kit": "^0.19.11"
     }

@@ -13,11 +13,14 @@ interface pageProps {
 }
 
 const page: FC<pageProps> = ({ params }) => {
-    // params.slug
+    const defaultTab = params.slug === 'signup' ? 'signup' : 'login';
     return (
         <div className="flex items-center justify-center pt-20">
             <Card>
-                <Tabs defaultValue="login" className="rounded-md w-96 p-5">
+                <Tabs
+                    defaultValue={`${defaultTab}`}
+                    className="rounded-md w-96 p-5"
+                >
                     <TabsList>
                         <TabsTrigger value="login">Login</TabsTrigger>
                         <TabsTrigger value="signup">Sign Up</TabsTrigger>
