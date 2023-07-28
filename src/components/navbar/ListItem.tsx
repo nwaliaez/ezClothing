@@ -1,11 +1,12 @@
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode } from "react";
+import { Button } from "../ui/button";
 
 interface ListItemProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const ListItem: FC<ListItemProps> = ({ children }) => {
-    return <li>{children}</li>;
+  return <Button variant="ghost">{children}</Button>;
 };
 
 export default ListItem;
