@@ -1,9 +1,10 @@
 import Hero from '@/components/Hero';
 import Products from '@/components/Products';
 import SubNav from '@/components/SubNav';
-import { useState } from 'react';
+import ProductSkeleton from '@/components/products/ProductSkeleton';
+import { Suspense } from 'react';
 
-export default function Home({
+export default async function Home({
     searchParams,
 }: {
     searchParams: { query?: string };
@@ -15,10 +16,16 @@ export default function Home({
             </section>
             <section className="container grid gap-5">
                 <SubNav gender={searchParams.query || 'male'} />
-                <Products
-                    gender={searchParams.query || 'male'}
-                    className="grid-cols-4"
-                />
+                <Suspense
+                    fallback={
+                        <ProductSkeleton count={4} className="grid-cols-4" />
+                    }
+                >
+                    <Products
+                        gender={searchParams.query || 'male'}
+                        className="grid-cols-4"
+                    />
+                </Suspense>
             </section>
         </div>
     );

@@ -6,13 +6,20 @@ import Link from 'next/link';
 import { Products } from '@/db/schema';
 
 interface ProductsProps {
-    className: string;
+    className?: string;
     gender: string;
 }
 
 const Products: FC<ProductsProps> = async ({ className, gender }) => {
     const genderFilter = gender == 'female' ? 'female' : 'male';
-
+    const delay = () => {
+        return new Promise<void>((resolve) => {
+            setTimeout(() => {
+                return resolve();
+            }, 2000);
+        });
+    };
+    await delay();
     const getProducts = async () => {
         const response = await fetch(
             `${process.env.NEXT_PUBLIC_BASE_URL}/getProducts`,

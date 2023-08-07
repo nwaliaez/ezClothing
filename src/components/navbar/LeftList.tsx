@@ -10,10 +10,10 @@ const LeftList: FC<LeftListProps> = async () => {
     return (
         <ul className="flex gap-5">
             <li>
-                <Link href="/">Men</Link>
+                <Link href="/clothing/men">Men</Link>
             </li>
             <li>
-                <Link href="/">Women</Link>
+                <Link href="/clothing/women">Women</Link>
             </li>
         </ul>
     );
