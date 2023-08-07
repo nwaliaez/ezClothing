@@ -1,8 +1,8 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "3084d98b-4da1-4112-bae6-96806a4e8d42",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "89d6099a-e5c6-4519-aeb7-a404bea3580d",
+  "prevId": "674aab98-40e6-4326-aa2a-0ac83ea58058",
   "tables": {
     "cart": {
       "name": "cart",
@@ -168,31 +168,38 @@
           "name": "product_title",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "product_description": {
           "name": "product_description",
           "type": "text",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "category": {
           "name": "category",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "gender": {
           "name": "gender",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
+        },
+        "price": {
+          "name": "price",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 10
         },
         "image_url": {
           "name": "image_url",
           "type": "varchar(256)",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true
         },
         "stock": {
           "name": "stock",

@@ -1,24 +1,40 @@
 import { FC } from 'react';
-import Card from './products/ProductCard';
 import ProductCard from './products/ProductCard';
 import { Button } from './ui/button';
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import { Products } from '@/db/schema';
 
-interface ProductsProps {}
+interface ProductsProps {
+    className: string;
+    gender: string;
+}
 
-const Products: FC<ProductsProps> = ({}) => {
+const Products: FC<ProductsProps> = async ({ className, gender }) => {
+    const genderFilter = gender == 'female' ? 'female' : 'male';
+
+    const getProducts = async () => {
+        const response = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/getProducts`,
+            { method: 'POST', body: JSON.stringify({ gender: genderFilter }) }
+        );
+        const result = await response.json();
+        return result;
+    };
+    const apiResponse = await getProducts();
+    let products: Products[] = [];
+    if (apiResponse.status === 'success') products = apiResponse.data;
     return (
         <>
-            <div className={`grid grid-cols-4 gap-5`}>
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+            <div className={`grid gap-5 ${className}`}>
+                {products?.map((product) => (
+                    <ProductCard
+                        title={product.productTitle}
+                        src={product.imageUrl}
+                        price={product.price}
+                        key={product.id}
+                    />
+                ))}
             </div>
             <div className="flex justify-center">
                 <Button>

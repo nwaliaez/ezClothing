@@ -24,10 +24,9 @@ export const authOptions: NextAuthOptions = {
                     }
                 );
                 const user = await res.json();
-                console.log(user);
-                // console.log(user);
                 // If no error and we have user data, return it
                 if (res.ok && user) {
+                    // console.log('asd');
                     return user.data;
                 }
                 // Return null if user data could not be retrieved
@@ -36,7 +35,7 @@ export const authOptions: NextAuthOptions = {
         }),
     ],
     callbacks: {
-        async redirect({ url, baseUrl }) {
+        async redirect({ baseUrl }) {
             return baseUrl;
         },
         async session({ session, user, token }) {

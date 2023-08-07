@@ -3,6 +3,7 @@ import {
     numeric,
     pgEnum,
     pgTable,
+    real,
     serial,
     text,
     timestamp,
@@ -24,11 +25,13 @@ export const users = pgTable('users', {
 // Products
 export const products = pgTable('products', {
     id: serial('id').primaryKey(),
-    productTitle: varchar('product_title', { length: 256 }),
-    productDescription: text('product_description'),
-    category: varchar('category', { length: 256 }),
-    imageUrl: varchar('image_url', { length: 256 }),
-    stock: integer('int1').default(10),
+    productTitle: varchar('product_title', { length: 256 }).notNull(),
+    productDescription: text('product_description').notNull(),
+    category: varchar('category', { length: 256 }).notNull(),
+    gender: varchar('gender', { length: 256 }).notNull(),
+    price: real('price').default(10).notNull(),
+    imageUrl: varchar('image_url', { length: 256 }).notNull(),
+    stock: integer('stock').default(10),
     createAt: timestamp('create_at').defaultNow(),
 });
 

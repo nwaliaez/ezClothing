@@ -7,7 +7,6 @@ interface LeftListProps {}
 
 const LeftList: FC<LeftListProps> = async () => {
     const session = await getServerSession(authOptions);
-    console.log(session);
     return (
         <ul className="flex gap-5">
             <li>

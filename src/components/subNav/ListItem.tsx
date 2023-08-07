@@ -1,5 +1,5 @@
+'use client';
 import { FC, ReactNode } from 'react';
-import { Button } from '../ui/button';
 
 interface ListItemProps {
     children: ReactNode;

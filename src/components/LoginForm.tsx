@@ -19,7 +19,6 @@ import { signIn } from 'next-auth/react';
 
 import { useToast } from './ui/use-toast';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 
 import { Loader2 } from 'lucide-react';
 
@@ -46,7 +45,7 @@ export function LoginForm() {
             email,
             password,
         });
-        // const result = await response.json();
+        console.log(response);
         if (response?.error == 'CredentialsSignin') {
             toast({
                 variant: 'destructive',

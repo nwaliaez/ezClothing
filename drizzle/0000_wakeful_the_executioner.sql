@@ -21,16 +21,17 @@ CREATE TABLE IF NOT EXISTS "products" (
 	"product_title" varchar(256),
 	"product_description" text,
 	"category" varchar(256),
+	"gender" varchar(256),
 	"image_url" varchar(256),
-	"int1" integer DEFAULT 10,
+	"stock" integer DEFAULT 10,
 	"create_at" timestamp DEFAULT now()
 );
 
 CREATE TABLE IF NOT EXISTS "users" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"name" text,
-	"email" varchar(256),
-	"password" varchar(256),
+	"name" text NOT NULL,
+	"email" varchar(256) NOT NULL,
+	"password" varchar(256) NOT NULL,
 	"phone" varchar(256),
 	"address" text,
 	"create_at" timestamp DEFAULT now(),
